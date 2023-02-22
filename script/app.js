@@ -1,31 +1,32 @@
-function getElement(selection){
-    const element = document.querySelector(selection);
-    if(element){
-        return element
-    } else {
-        throw new Error(`Please check ${selection} selector, no such element exist`)
-    }
+import { getElement, allProductsUrl, fetchData, store, setUpStore, displayHTML} from "../utils/funtions.js";
+
+// selections
+const featuredProductsDom = getElement('.featured-product-center');
+
+
+
+
+
+
+async function init (){
+    const data = await fetchData(allProductsUrl, featuredProductsDom);
+    setUpStore(data);
+    const featuredProducts = store.filter((product) => product.featured === true);
+    
+
+    featuredProductsDom.innerHTML = `
+    <div class="single-product-container">
+        ${displayHTML(featuredProducts, featuredProductsDom)}
+    </div>
+    `
+
+    
 }
 
-const cartTogggle = getElement('.cart-toggle');
-const navToggle = getElement('.nav-toggle');
-const mobileMenu = getElement('.mobile-menu-overlay');
-const cartMenu = getElement('.cart-overlay');
-const closeCartBtn = getElement('.close-cart-btn');
-const closeMobileMenuBtn = getElement('.mobile-menu-close');
+init();
 
-cartTogggle.addEventListener('click', ()=>{
-    cartMenu.classList.add('show');
-});
 
-closeCartBtn.addEventListener('click', ()=>{
-    cartMenu.classList.remove('show');
-})
 
-navToggle.addEventListener('click', ()=>{
-    mobileMenu.classList.add('show');
-})
 
-closeMobileMenuBtn.addEventListener('click', ()=>{
-    mobileMenu.classList.remove('show');
-})
+
+

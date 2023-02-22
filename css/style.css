@@ -120,6 +120,8 @@ img {
     display: block;
 }
 
+/* Nav Bar */
+
 .header {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('../images/main-bcg.jpeg') center/cover;
@@ -144,7 +146,7 @@ img {
     align-items: center;
 }
 
-.nav-header ul, .nav-header li {
+.nav-header .nav-links {
     display: flex;
     gap: 3rem;
 }
@@ -171,6 +173,7 @@ img {
     left: 50%;
     transform: translateX( -50%);
 }
+
 
 .cart-toggle {
     position: relative;
@@ -204,6 +207,8 @@ img {
     place-items: center;
     border-radius: 50%;
 }
+
+/* Hero Section */
 
 .hero-container {
     position: absolute;
@@ -255,6 +260,8 @@ img {
     background: var(--clr-white);
     color: var(--clr-primary-5);
 }
+
+/* featured Products */
 
 .featured-products {
     margin: 5rem 0;
@@ -355,15 +362,22 @@ img {
     font-weight: bold;
 }
 
-.section-loading {
+.section-loading, .error {
     max-width: 300px;
     margin: 0 auto;
     text-align: center;
 }
 
+.error {
+    color: red;
+    font-weight: bold;
+}
+
 .section-loading h3 {
     font-size: 2rem;
 }
+
+/* Cart Menu */
 
 .cart-overlay {
     position: fixed;
@@ -437,7 +451,6 @@ img {
 
 .col-2 {
     flex: 1;
-    /* border: 1px solid red; */
     display: flex;
     justify-content: space-between;
 }
@@ -496,6 +509,8 @@ footer {
     margin: 2rem 0 1.5rem;
 }
 
+/* Mobile Menu */
+
 .mobile-menu-overlay {
     position: fixed;
     width: 100%;
@@ -513,7 +528,7 @@ footer {
 .mobile-menu-overlay.show {
     opacity: 1;
     z-index: 9999;
-  }
+}
 
 .mobile-menu {
     background: var(--clr-white);
@@ -529,7 +544,7 @@ footer {
 
 .show .mobile-menu {
     transform: scale(1);
-  }
+}
 
 .mobile-menu-close {
     font-size: 2rem;
@@ -596,7 +611,6 @@ footer {
 .page-header {
     width: 90%;
     margin: 0 auto;
-    /* border: 1px solid yellow; */
 }
 
 .page-header h1 {
@@ -609,7 +623,6 @@ footer {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 5rem 0;
-
 }
 
 .page-text .title {
@@ -631,6 +644,8 @@ footer {
     margin-top: 2rem;
     font-size: 1rem;
 }
+
+/* Product Page */
 
 .product-container {
     width: 90vw;
@@ -681,6 +696,17 @@ footer {
 .products {
     flex: 1;
 }
+
+.product-color {
+    display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #222;
+  margin: 0 0.5rem 0.5rem+ 0;
+}
+
+/* Products Page */
 
 .search-input {
     width: 100%;
@@ -749,6 +775,8 @@ footer {
   .products p {
     font-size: 0.8rem;
   }
+
+
 
 
 @media only screen and (max-width: 1005px){
