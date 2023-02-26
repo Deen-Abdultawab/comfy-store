@@ -405,6 +405,8 @@ img {
     height: 100%;
     max-width: 400px;
     padding: 1.5rem 1rem 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     overflow: scroll;
     transition: var(--transition);
     transform: translateX(100%);
@@ -496,12 +498,9 @@ img {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
-    left: 50%;
-    transform: translateX(-50%);
     text-align: center;
+    margin-top: 2rem;
 }
 
 .cart-checkout-btn {

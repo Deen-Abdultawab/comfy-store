@@ -11,3 +11,7 @@ cartTogggle.addEventListener('click', ()=>{
 closeCartBtn.addEventListener('click', ()=>{
     cartMenu.classList.remove('show');
 })
+
+export function openCart (){
+    cartMenu.classList.add('show');
+}

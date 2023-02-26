@@ -1,3 +1,8 @@
+import "../script/cartToggle.js"
+import "../script/navToggle.js"
+import "../utils/setUpCart.js"
+
+
 import { getElement, allProductsUrl, fetchData, store, setUpStore, displayHTML} from "../utils/funtions.js";
 
 // selections

@@ -1,5 +1,8 @@
 import "../script/cartToggle.js"
 import "../script/navToggle.js"
+import "../utils/setUpCart.js"
+
+import { companyFilter } from "../utils/filter.js"
 
 import { getElement, allProductsUrl, fetchData, store, setUpStore, displayHTML} from "../utils/funtions.js"
 
@@ -10,7 +13,9 @@ async function init(){
     setUpStore(data);
     productsDOM.innerHTML = `
         ${displayHTML(store, productsDOM)}
-    `
+    `;
+
+    companyFilter();
 }
 
 init();
