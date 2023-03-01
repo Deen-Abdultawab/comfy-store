@@ -294,6 +294,10 @@ img {
     border-radius: var(--radius);
 }
 
+.diaplayNone {
+    display: none;
+}
+
 .single-product-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -830,6 +834,7 @@ footer {
     .product-container {
         grid-template-columns: 1fr;
         width: 95vw;
+        padding: 0.7rem;
         
     }
 

@@ -115,31 +115,34 @@ function formatPrice(price) {
     return productHTML;
 }
 
-function addToCart(e){
-        const parent = e.target.parentElement;
-        if(parent.classList.contains('product-cart-btn') || e.target.classList.contains('product-cart-btn')){
-            const targetID = parent.dataset.id || e.target.dataset.id;
+// cart
 
-            let item = cart.find((cartItem)=> cartItem.id === targetID);
+function addToCart(e, targetID){
 
-            if(!item){
-                let product = store.find((storeItem)=> storeItem.id === targetID);
-                product = { ...product, amount: 1};
-                cart = [...cart, product]
-                addCartDom(product);
-                
-            } else{
-                const amount = increaseAmount(targetID);
-                const items = [...cartItemDOM.querySelectorAll('.item-quantity')];
-                console.log(amount, items)
-                const newAmount = items.find((value) => value.dataset.id === targetID);
-                newAmount.textContent = amount;
-            }
-            displayCartItemCount();
-            displayCartTotalCost()
-            setStorageItem('cart', cart);
-            openCart();
+    const parent = e.target.parentElement;
+    if(parent.classList.contains('product-cart-btn') || e.target.classList.contains('product-cart-btn')){
+        targetID = parent.dataset.id || e.target.dataset.id;
+
+        let item = cart.find((cartItem)=> cartItem.id === targetID);
+
+        if(!item){
+            let product = store.find((storeItem)=> storeItem.id === targetID);
+            product = { ...product, amount: 1};
+            cart = [...cart, product]
+            addCartDom(product);
+            
+        } else{
+            const amount = increaseAmount(targetID);
+            const items = [...cartItemDOM.querySelectorAll('.item-quantity')];
+            console.log(amount, items)
+            const newAmount = items.find((value) => value.dataset.id === targetID);
+            newAmount.textContent = amount;
         }
+        displayCartItemCount();
+        displayCartTotalCost()
+        setStorageItem('cart', cart);
+        openCart();
+    }
     
 }
 
@@ -176,6 +179,7 @@ function addCartDom({ id, name, price, imageSrc, amount }){
     `;
 
     cartItemDOM.appendChild(article);
+    console.log(article)
 }
 
 function displayCartItemCount(){
@@ -209,6 +213,7 @@ function setUpCartFunctionality(){
 
         if(targetParent.classList.contains('increase-btn')){
             const newAmount = increaseAmount(parentID);
+            
             targetParent.nextElementSibling.textContent = newAmount;
         }
 
@@ -277,4 +282,4 @@ function displayCartItemsDOM() {
     });
 }
 
-export {getElement, fetchData, allProductsUrl, singleProductUrl, setUpStore, formatPrice, store, displayHTML, addToCart ,displayCartItemCount, displayCartTotalCost, displayCartItemsDOM, cart, setUpCartFunctionality}
+export {getElement, fetchData, allProductsUrl, singleProductUrl, setUpStore, formatPrice, store, displayHTML, addToCart ,displayCartItemCount, displayCartTotalCost, displayCartItemsDOM, cart, setUpCartFunctionality, openCart, addCartDom, setStorageItem, increaseAmount, decreaseAmount,getStorageItem}

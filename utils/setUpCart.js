@@ -1,4 +1,4 @@
-import { displayCartItemCount,  displayCartTotalCost ,displayCartItemsDOM, cart, setUpCartFunctionality} from "./funtions.js";
+import { displayCartItemCount,  displayCartTotalCost ,displayCartItemsDOM, setUpCartFunctionality} from "./funtions.js";
 
 function init(){
     displayCartItemCount();
