@@ -7,9 +7,10 @@ function init(){
     setUpCartFunctionality();
 }
 
-if(cart.length > 0){
-    init();
-}
+
+
+init();
+
 
 
 
