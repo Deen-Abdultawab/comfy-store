@@ -252,10 +252,10 @@ function getStorageItem (item) {
     return storageItem
 }
 
-function increaseAmount(id) {
+function increaseAmount(sourceID) {
     let newAmount;
     cart = cart.map((cartItem) => {
-        if (cartItem.id === id) {
+        if (cartItem.id === sourceID) {
         newAmount = cartItem.amount + 1;
         cartItem = { ...cartItem, amount: newAmount };
         }
@@ -264,10 +264,10 @@ function increaseAmount(id) {
     return newAmount;
 }
 
-function decreaseAmount(id) {
+function decreaseAmount(sourceID) {
     let newAmount;
     cart = cart.map((cartItem) => {
-      if (cartItem.id === id) {
+      if (cartItem.id === sourceID) {
         newAmount = cartItem.amount - 1;
         cartItem = { ...cartItem, amount: newAmount };
       }
@@ -282,4 +282,5 @@ function displayCartItemsDOM() {
     });
 }
 
-export {getElement, fetchData, allProductsUrl, singleProductUrl, setUpStore, formatPrice, store, displayHTML, addToCart ,displayCartItemCount, displayCartTotalCost, displayCartItemsDOM, cart, setUpCartFunctionality, openCart, addCartDom, setStorageItem, increaseAmount, decreaseAmount,getStorageItem}
+
+export {getElement, fetchData, allProductsUrl, singleProductUrl, setUpStore, formatPrice, store, displayHTML, addToCart ,displayCartItemCount, displayCartTotalCost, displayCartItemsDOM, cart, setUpCartFunctionality, openCart, addCartDom, setStorageItem, increaseAmount, decreaseAmount,getStorageItem, removeItem}

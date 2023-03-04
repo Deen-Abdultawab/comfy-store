@@ -24,10 +24,6 @@ let cart = getStorageItem('cart');
 let store = getStorageItem('store');
 
 
-
-
-
-
 async function init (){
     const params = new URLSearchParams(window.location.search);
     const singleID = params.get('id');
@@ -64,14 +60,15 @@ async function init (){
             console.log(response.status, response.statusText);
             singleProductDOM.innerHTML = `
             <div class=" error">
+                <h3>${response.status} Error</h3>
                 <h3>Sorry something went wrong.....</h3>
             </div>
-            <a href="index.html" class="btn">Back</a>
+            <a href="index.html" class="btn error-btn">Back</a>
             `
         }
     } catch (error) {
         singleProductDOM.innerHTML = `
-            <div class=" losding">
+            <div class=" loading">
                 <h3>Sorry,there was an error.....</h3>
             </div>
             <a href="index.html" class="btn">Back</a>
@@ -84,15 +81,12 @@ async function init (){
 window.addEventListener('DOMContentLoaded', init);
 
 
-
-
 addToCartBtn.addEventListener('click', ()=>{
     let item = cart.find((cartItem)=> cartItem.id === targetID);
 
     if(!item){
         let product = store.find((storeItem)=> storeItem.id === targetID);
         product = {...product, amount: 1};
-        console.log(product);
         cart = [...cart, product];
         addCartDom(product)
         
@@ -100,14 +94,16 @@ addToCartBtn.addEventListener('click', ()=>{
         const amount = increaseAmount(targetID);
         const items = [...cartItemDOM.querySelectorAll('.item-quantity')];
         const newAmount = items.find((value) => value.dataset.id === targetID);
-        console.log(newAmount);
         newAmount.textContent = amount;
     }
     displayCartItemCount();
     displayCartTotalCost()
     setStorageItem('cart', cart);
     openCart();
-})
+});
+
+// functions: having bugs when i imported the functions from function.js so i declared them here again which is wrong practice, feedbacks will be greatly appreciated.
+
 
 function increaseAmount(sourceID) {
     let newAmount;
@@ -164,7 +160,6 @@ function addCartDom({ id, name, price, imageSrc, amount }){
     `;
 
     cartItemDOM.appendChild(article);
-    console.log(article)
 }
 
 function setStorageItem(name, item) {

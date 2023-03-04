@@ -36,18 +36,7 @@ function priceFilter(){
             checkStore();
             newStore = newStore.filter((storeItem)=> storeItem.price / 100 <= value);
         }
-        productsDOM.innerHTML = `
-                    ${displayHTML(newStore, productsDOM, true)}
-                `;
-
-        if(newStore.length < 1){
-            productsDOM.innerHTML = `
-            <div class="section-loading">
-                <h3>Sorry, There was no result for this search.....</h3>
-            </div>
-            
-            `
-        }
+        displayFilteredProducts();
 
     })
 }
@@ -68,49 +57,28 @@ function companyFilter(){
                 companyDOM.classList.add('active');
             }
             if(target.textContent === 'all'){
-                let maxPrice = store.map((product) => product.price);
-                maxPrice = Math.max(...maxPrice);
-                maxPrice = Math.ceil(maxPrice / 100);
-                priceInput.value = maxPrice;
-                priceInput.max = maxPrice;
-                priceInput.min = 0;
-                priceValueDOM.textContent = `Value : $${maxPrice}`;
+                setPriceToDefault();
                 searchInput.value = '';
-
-
-                newStore = [...store]; 
-                console.log(newStore);
-                
+                newStore = [...store];                 
             } else {
                 filterCompany(target);
                 checkFilter();                
             }
             
-            productsDOM.innerHTML = `
-                    ${displayHTML(newStore, productsDOM, true)}
-                `;
-
-            if(newStore.length < 1){
-                productsDOM.innerHTML = `
-                <div class="section-loading">
-                    <h3>Sorry, There was no result for this search.....</h3>
-                </div>
-                
-                `
-            }
+            displayFilteredProducts();
         }  
     })
 }
 
 function searchFilter(){
     searchForm.addEventListener('input', ()=>{
-        const inputValue = searchInput.value;
+        const inputValue = searchInput.value.toLowerCase();
         newStore = [...store]; 
         if(inputValue){
             newStore = newStore.filter((storeItem)=> {
                 let {name} = storeItem;
                 name = name.toLowerCase();
-                if(name.startsWith(inputValue)){
+                if(name.includes(inputValue)){
                     return storeItem;
                 }
             });
@@ -120,36 +88,16 @@ function searchFilter(){
                 newStore = newStore.filter((storeItem)=> {
                     let {name} = storeItem;
                     name = name.toLowerCase();
-                    if(name.startsWith(inputValue)){
+                    if(name.includes(inputValue)){
                         return storeItem;
                     }
                 });
-
             }
 
-            console.log(newStore);
-            productsDOM.innerHTML = `
-            ${displayHTML(newStore, productsDOM, true)}
-            `;
+        displayFilteredProducts();
 
-            if(newStore.length < 1){
-                productsDOM.innerHTML = `
-                <div class="section-loading">
-                    <h3>Sorry, There was no result for this search.....</h3>
-                </div>
-                
-                `
-            }
         } else {
-            let maxPrice = store.map((product) => product.price);
-            maxPrice = Math.max(...maxPrice);
-            maxPrice = Math.ceil(maxPrice / 100);
-            priceInput.value = maxPrice;
-            priceInput.max = maxPrice;
-            priceInput.min = 0;
-            priceValueDOM.textContent = `Value : $${maxPrice}`;
-
-
+            setPriceToDefault();
             productsDOM.innerHTML = `
             ${displayHTML(store, productsDOM, true)}
             `;
@@ -158,27 +106,49 @@ function searchFilter(){
 
 }
 
+function displayFilteredProducts(){
+    productsDOM.innerHTML = `
+            ${displayHTML(newStore, productsDOM, true)}
+            `;
+
+    if(newStore.length < 1){
+        productsDOM.innerHTML = `
+        <div class="section-loading">
+            <h3>Sorry, There was no result for this search.....</h3>
+        </div>
+        
+        `
+    }
+}
+
+function setPriceToDefault(){
+    let maxPrice = store.map((product) => product.price);
+        maxPrice = Math.max(...maxPrice);
+        maxPrice = Math.ceil(maxPrice / 100);
+        priceInput.value = maxPrice;
+        priceInput.max = maxPrice;
+        priceInput.min = 0;
+        priceValueDOM.textContent = `Value : $${maxPrice}`;
+}
+
 function checkFilter(){
     if(searchInput.value){
         const inputValue = searchInput.value;
         newStore = newStore.filter((storeItem)=> {
             let {name} = storeItem;
             name = name.toLowerCase();
-            if(name.startsWith(inputValue)){
+            if(name.includes(inputValue)){
                 return storeItem;
             }
         }); 
-        console.log('search')
     };
     if(companyDOM.classList.contains('active')){
         newStore = newStore.filter((storeItem)=> storeItem.company === target.textContent);
-        console.log('company')
     };
 
     if(priceForm.classList.contains('active')){
         const value = Number(priceInput.value);
         newStore = newStore.filter((storeItem)=> storeItem.price / 100 <= value);
-        console.log('price')
     }
     
 }

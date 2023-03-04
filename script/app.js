@@ -9,10 +9,6 @@ import { getElement, allProductsUrl, fetchData, store, setUpStore, displayHTML} 
 const featuredProductsDom = getElement('.featured-product-center');
 
 
-
-
-
-
 async function init (){
     const data = await fetchData(allProductsUrl, featuredProductsDom);
     setUpStore(data);

@@ -78,6 +78,10 @@ body {
     color: var(--clr-black);
 }
 
+.error-btn {
+    text-align: center;
+}
+
 a {
     text-decoration: none;
     color: var(--clr-white);
