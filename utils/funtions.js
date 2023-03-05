@@ -1,5 +1,6 @@
 
 import { openCart } from "../script/cartToggle.js";
+import { setTotalPrice } from "../script/payment.js";
 
 const allProductsUrl = 'https://course-api.com/javascript-store-products'
 
@@ -139,7 +140,8 @@ function addToCart(e, targetID){
             newAmount.textContent = amount;
         }
         displayCartItemCount();
-        displayCartTotalCost()
+        displayCartTotalCost();
+        setTotalPrice();
         setStorageItem('cart', cart);
         openCart();
     }
@@ -229,6 +231,7 @@ function setUpCartFunctionality(){
         }
         displayCartItemCount();
         displayCartTotalCost();
+        setTotalPrice();
         setStorageItem('cart', cart);
     }) 
 }

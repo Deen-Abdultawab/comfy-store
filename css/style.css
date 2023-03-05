@@ -625,7 +625,7 @@ footer {
     font-weight: 500;
 }
 
-.about-page {
+.about-page, .payment-page {
     width: 90vw;
     max-width: var(--max-width);
     margin: 0 auto;
@@ -715,7 +715,7 @@ footer {
 
 /* Products Page */
 
-.search-input {
+.search-input, .payment-page input, .payment-page .price, .refNumber {
     width: 100%;
     padding: 0.5rem;
     background: var(--clr-grey-10);
@@ -725,12 +725,12 @@ footer {
     transition: var(--transition);
 }
 
-.search-input:focus {
+.search-input:focus, .payment-page input:focus {
     transform: scale(1.05);
     outline: none;
 }
 
-.search-input::placeholder {
+.search-input::placeholder, .payment-page input::placeholder {
     font-size: 1rem;
     text-transform: capitalize;
     font-weight: lighter;
@@ -781,6 +781,50 @@ footer {
 
   .products p {
     font-size: 0.8rem;
+  }
+
+  /* Payment */
+
+  .payment-page {
+    max-width: 500px;
+    padding: 0;
+    margin: 5rem auto;
+    /* border: 1px solid red; */
+  }
+
+  
+
+  .payment-page input, .payment-page .price, .refNumber {
+    margin: 0.5rem 0 1rem;
+  }
+
+  .payment-page input::placeholder{
+    font-size: 0.7rem;
+  }
+
+  .payment-page label {
+    /* margin-top: 10rem; */
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--clr-grey-1);
+    /* border: 1px solid red; */
+  }
+
+  .payment-page .price, .refNumber{
+    font-weight: bold;
+    display: block;
+  }
+
+.form-submit {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+  .payment-btn {
+    width: 100px;
+    margin: 2rem 0;
+    
   }
 
 
