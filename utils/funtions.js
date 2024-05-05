@@ -1,12 +1,12 @@
 import { openCart } from "../script/cartToggle.js";
 // import { setTotalPrice } from "../script/payment.js";
 
-const allProductsUrl = 'https://course-api.com/javascript-store-products'
+const allProductsUrl = 'https://www.course-api.com/javascript-store-products'
 
 // 'https://course-api.com/javascript-store-single-product?id=rec43w3ipXvP28vog'
 
 const singleProductUrl =
-'https://course-api.com/javascript-store-single-product'
+'https://www.course-api.com/javascript-store-single-product'
 
 let store = getStorageItem('store');
 let cart = getStorageItem('cart');
